@@ -6,166 +6,233 @@
   <title>김대현 | MyLink</title>
   <meta name="description" content="김대현(@daehyun2000)의 링크 모음" />
   <meta property="og:title" content="김대현 | MyLink" />
-  <meta property="og:description" content="인스타그램, GitHub, 참여한 프로젝트를 한 곳에서" />
+  <meta property="og:description" content="인스타그램, GitHub, 인턴으로 참여한 프로젝트를 한 곳에서" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://daehyun2000.github.io/mylink/" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='11' fill='white' stroke='%2324A05A' stroke-width='6'/></svg>" />
+  <meta name="theme-color" content="#e4e6ea" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1a2130" media="(prefers-color-scheme: dark)" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='2' y='7' width='28' height='18' rx='3' fill='%23f6f5f1' stroke='%232b45c9' stroke-width='2'/><path d='M8 16h4l2-4 3 8 2-4h5' fill='none' stroke='%232b45c9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
   <style>
     :root {
-      --paper: #f5f7f4;
-      --ink: #1d2421;
-      --muted: #66706b;
-      --line: #24a05a;
-      --line-soft: #dcefe3;
-      --station: #ffffff;
-      --danger: #c8412f;
+      /* 책상 (페이지 바탕) */
+      --desk: #e4e6ea;
+      --lamp: #f3f4f6;
+      --ink: #161a22;
+      --muted: #596273;
+      --rule: #c9cdd5;
+      --hover: rgba(22, 26, 34, .05);
+      --accent: #2b45c9;
+      --accent-ink: #ffffff;
+      /* 명함 (항상 종이) */
+      --paper: #f6f5f1;
+      --paper-ink: #161a22;
+      --paper-muted: #6b7180;
+      --cobalt: #2b45c9;
+      --shadow:
+        0 1px 2px rgba(20, 24, 34, .10),
+        0 10px 20px -8px rgba(20, 24, 34, .20),
+        0 36px 60px -24px rgba(20, 24, 34, .32);
+
+      --ease-out: cubic-bezier(.16, 1, .3, 1);
+      --ease-ui: cubic-bezier(.23, 1, .32, 1);
+      color-scheme: light;
     }
     @media (prefers-color-scheme: dark) {
       :root:not([data-theme="light"]) {
-        --paper: #121614; --ink: #e9eeeb; --muted: #97a39d;
-        --line: #3cc07a; --line-soft: #1c2c23; --station: #121614; --danger: #f0735f;
+        --desk: #1a2130; --lamp: #27324a; --ink: #e8ebf2; --muted: #9aa3b5; --rule: #323d55;
+        --hover: rgba(232, 235, 242, .06); --accent: #8fa2ff; --accent-ink: #111733;
+        --shadow:
+          0 1px 2px rgba(0, 0, 0, .30),
+          0 12px 24px -8px rgba(0, 0, 0, .45),
+          0 40px 70px -24px rgba(0, 0, 0, .60);
+        color-scheme: dark;
       }
     }
     :root[data-theme="dark"] {
-      --paper: #121614; --ink: #e9eeeb; --muted: #97a39d;
-      --line: #3cc07a; --line-soft: #1c2c23; --station: #121614; --danger: #f0735f;
+      --desk: #1a2130; --lamp: #27324a; --ink: #e8ebf2; --muted: #9aa3b5; --rule: #323d55;
+      --hover: rgba(232, 235, 242, .06); --accent: #8fa2ff; --accent-ink: #111733;
+      --shadow:
+        0 1px 2px rgba(0, 0, 0, .30),
+        0 12px 24px -8px rgba(0, 0, 0, .45),
+        0 40px 70px -24px rgba(0, 0, 0, .60);
+      color-scheme: dark;
     }
 
     * { box-sizing: border-box; }
+    html { scrollbar-color: var(--rule) transparent; }
     body {
-      margin: 0; min-height: 100vh; background: var(--paper); color: var(--ink);
-      font-family: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-      font-size: 16px; line-height: 1.55;
-      display: flex; justify-content: center; padding: 56px 16px 72px;
+      margin: 0; min-height: 100vh; color: var(--ink);
+      background: radial-gradient(120% 70% at 50% -10%, var(--lamp), var(--desk) 60%) fixed, var(--desk);
+      font-family: "Pretendard Variable", Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased;
+      display: flex; justify-content: center; padding: 64px 16px 72px;
+      caret-color: var(--accent);
+      touch-action: manipulation; -webkit-tap-highlight-color: transparent;
     }
+    ::selection { background: var(--accent); color: var(--accent-ink); }
+    a { color: inherit; text-underline-offset: 3px; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 12px; }
     main { width: 100%; max-width: 440px; }
-    a { color: inherit; }
-    :focus-visible { outline: 3px solid var(--line); outline-offset: 3px; border-radius: 10px; }
+    @media (min-height: 820px) { body { padding-top: 10vh; } }
 
-    /* 역 이름판 */
-    .sign {
-      display: inline-flex; flex-direction: column; align-items: center;
-      padding: 14px 34px 12px; border: 6px solid var(--line); border-radius: 999px;
-      background: var(--station);
+    /* ── 명함 ───────────────────────────── */
+    .stage { perspective: 900px; margin-bottom: 36px; }
+    .card-wrap { animation: card-in 900ms var(--ease-out) both; transform-origin: 50% 100%; }
+    .card {
+      position: relative; width: 100%; aspect-ratio: 9 / 5; border-radius: 10px; overflow: hidden;
+      background: var(--paper); color: var(--paper-ink); box-shadow: var(--shadow);
+      padding: 22px 24px; display: grid; grid-template-rows: auto 1fr auto;
+      transform-style: preserve-3d; will-change: transform;
     }
-    .sign h1 {
-      margin: 0; font-size: 2.6rem; line-height: 1.05; font-weight: 700; letter-spacing: 0.06em;
+    .card::after {
+      /* 빛 반사: 기울기에 따라 위치가 바뀜 */
+      content: ""; position: absolute; inset: -40%; pointer-events: none;
+      background: linear-gradient(105deg, transparent 42%, rgba(255, 255, 255, .55) 50%, transparent 58%);
+      transform: translateX(var(--sheen, -60%));
+      mix-blend-mode: soft-light; opacity: .9;
     }
-    .sign .roman { font-size: 0.9rem; font-weight: 500; color: var(--muted); letter-spacing: 0.02em; }
+    .card .sweep {
+      position: absolute; inset: -40%; pointer-events: none;
+      background: linear-gradient(105deg, transparent 44%, rgba(255, 255, 255, .7) 50%, transparent 56%);
+      transform: translateX(-70%); animation: sweep 1100ms 480ms var(--ease-out) both;
+    }
+    .card-top { display: flex; justify-content: space-between; align-items: flex-start; }
+    .card h1 {
+      margin: 0; font-family: "Noto Serif KR", serif; font-weight: 600;
+      font-size: 2.3rem; line-height: 1.1; letter-spacing: .14em;
+    }
+    .roman { display: block; margin-top: 6px; font-size: .78rem; font-weight: 500; letter-spacing: .04em; color: var(--paper-muted); }
+    .mark { width: 40px; height: 40px; color: var(--cobalt); flex: none; }
+    .card-bottom { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; font-size: .8rem; line-height: 1.45; }
+    .card-bottom .role { color: var(--paper-ink); }
+    .card-bottom .role > span { display: block; color: var(--paper-muted); }
+    .card-bottom .handle { color: var(--cobalt); font-weight: 600; letter-spacing: .01em; text-decoration: none; }
+    .card-bottom .handle:hover { text-decoration: underline; }
 
-    .intro { margin: 22px 0 40px; }
-    .intro p { margin: 0 0 6px; color: var(--muted); max-width: 32em; }
-    .intro .handle { font-weight: 500; color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--line); }
-    .intro .handle:hover { color: var(--line); }
+    .intro { margin: 0 0 20px; color: var(--muted); text-wrap: pretty; animation: rise 700ms 260ms var(--ease-out) both; }
 
-    /* 노선 */
-    .route { list-style: none; margin: 0; padding: 0; position: relative; }
-    .route::before {
-      content: ""; position: absolute; left: 13px; top: 30px; bottom: 30px; width: 6px;
-      background: var(--line); border-radius: 3px;
-      transform-origin: top; animation: draw .9s cubic-bezier(.6,0,.2,1) both;
+    /* ── 링크 목록 ─────────────────────── */
+    .links { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+    .links li { border-bottom: 1px solid var(--rule); animation: rise 620ms var(--ease-out) both; }
+    .row {
+      display: flex; align-items: center; gap: 16px; min-height: 72px; padding: 12px 10px;
+      text-decoration: none; border-radius: 12px; position: relative;
+      transition: background-color 180ms ease;
     }
-    .stop { position: relative; display: flex; align-items: center; }
-    .stop > a {
-      flex: 1; min-width: 0; display: flex; align-items: center; gap: 18px;
-      padding: 14px 12px 14px 0; min-height: 68px; text-decoration: none; border-radius: 14px;
+    .row-inner { display: flex; align-items: center; gap: 16px; flex: 1; min-width: 0; transition: transform 140ms var(--ease-ui); }
+    .row:active .row-inner { transform: scale(.98); }
+    .tile {
+      flex: none; width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center;
+      border: 1px solid var(--rule); color: var(--ink);
+      transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 260ms var(--ease-ui);
     }
-    .dot {
-      flex: none; position: relative; z-index: 1; width: 32px; height: 32px; border-radius: 50%;
-      background: var(--station); border: 6px solid var(--line);
-      animation: pop .3s ease-out both;
-      transition: background-color .15s;
-    }
-    .stop:last-child .dot { box-shadow: 0 0 0 4px var(--paper), 0 0 0 8px var(--line); }
-    .stop > a:hover .dot, .stop > a:focus-visible .dot { background: var(--line); }
-    .stop > a:hover .name { color: var(--line); }
-    .label { display: grid; min-width: 0; }
-    .name { font-size: 1.15rem; font-weight: 700; line-height: 1.3; transition: color .15s; }
-    .desc { font-size: 0.9rem; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .count { margin-left: auto; font-size: 0.8rem; color: var(--muted); white-space: nowrap; display: none; }
+    .tile svg { width: 20px; height: 20px; }
+    .text { display: grid; min-width: 0; flex: 1; }
+    .name { font-weight: 650; font-size: 1.02rem; line-height: 1.35; }
+    .desc { font-size: .88rem; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .arrow { flex: none; width: 18px; height: 18px; color: var(--muted); transition: transform 260ms var(--ease-ui), color 200ms ease; }
+    .count { font-size: .78rem; color: var(--muted); display: none; white-space: nowrap; }
     body.editing .count { display: inline; }
-    .ext { margin-left: auto; flex: none; width: 18px; height: 18px; color: var(--muted); }
-    body.editing .ext { display: none; }
 
-    .tools { display: none; gap: 6px; }
+    @media (hover: hover) and (pointer: fine) {
+      .row:hover { background: var(--hover); }
+      .row:hover .tile { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); transform: rotate(-6deg); }
+      .row:hover .arrow { color: var(--ink); transform: translate(3px, -3px); }
+    }
+
+    footer { margin-top: 40px; font-size: .8rem; color: var(--muted); animation: fade 600ms 800ms ease both; }
+
+    /* ── 편집 모드 (?edit) ─────────────── */
+    .tools { display: none; gap: 6px; padding-right: 10px; }
     body.editing .tools { display: flex; }
-
-    footer { margin-top: 56px; font-size: 0.82rem; color: var(--muted); }
-
-    /* 편집 모드 (?edit) */
+    li.editable { display: flex; align-items: center; }
+    li.editable .row { flex: 1; min-width: 0; }
     button {
-      font: inherit; font-weight: 500; cursor: pointer; color: var(--ink);
-      background: transparent; border: 2px solid var(--ink); border-radius: 999px;
-      min-width: 44px; min-height: 44px; padding: 0 16px;
+      font: inherit; font-weight: 600; font-size: .9rem; cursor: pointer; color: var(--ink);
+      background: transparent; border: 1px solid var(--rule); border-radius: 999px;
+      min-width: 44px; min-height: 44px; padding: 0 16px; transition: transform 140ms var(--ease-ui), background-color 180ms ease;
     }
-    button.primary { background: var(--line); border-color: var(--line); color: #fff; }
-    button.danger { border-color: var(--danger); color: var(--danger); }
-    .bar { display: none; gap: 10px; margin-top: 32px; flex-wrap: wrap; }
+    button:active { transform: scale(.97); }
+    button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+    button.danger { color: #c8412f; border-color: currentColor; }
+    .bar { display: none; gap: 10px; margin-top: 28px; flex-wrap: wrap; }
     body.can-edit .bar { display: flex; }
-    form {
-      display: none; gap: 12px; margin-top: 24px; padding: 20px;
-      background: var(--line-soft); border-radius: 18px;
-    }
+    form { display: none; gap: 12px; margin-top: 20px; padding: 20px; border: 1px solid var(--rule); border-radius: 16px; }
     body.editing form { display: grid; }
-    label { display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 4px; }
+    label { display: block; font-size: .85rem; font-weight: 600; margin-bottom: 4px; }
     input {
       width: 100%; font: inherit; padding: 10px 12px; min-height: 44px; color: var(--ink);
-      background: var(--paper); border: 2px solid transparent; border-radius: 10px;
+      background: transparent; border: 1px solid var(--rule); border-radius: 10px;
     }
-    input:focus { outline: none; border-color: var(--line); }
-    .row { display: grid; grid-template-columns: 76px 1fr; gap: 10px; }
-    .error { color: var(--danger); font-size: 0.85rem; min-height: 1.2em; margin: 0; }
+    input:focus { outline: none; border-color: var(--accent); }
+    .error { color: #c8412f; font-size: .85rem; min-height: 1.2em; margin: 0; }
     .empty { color: var(--muted); }
 
-    @keyframes draw { from { transform: scaleY(0); } to { transform: scaleY(1); } }
-    @keyframes pop { from { transform: scale(0); } to { transform: scale(1); } }
-    @media (prefers-reduced-motion: reduce) {
-      .route::before, .dot { animation: none; }
+    @keyframes card-in {
+      from { opacity: 0; transform: translateY(36px) rotateX(16deg) scale(.96); filter: blur(6px); }
+      to { opacity: 1; transform: none; filter: blur(0); }
     }
-    @media (max-width: 380px) {
-      .sign { padding: 12px 24px 10px; }
-      .sign h1 { font-size: 2.2rem; }
+    @keyframes sweep { from { transform: translateX(-70%); opacity: 1; } to { transform: translateX(70%); opacity: 0; } }
+    @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+    @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .card-wrap, .intro, .links li { animation: fade 300ms ease both !important; animation-delay: 0ms !important; }
+      .card .sweep { display: none; }
+      .row-inner, .tile, .arrow { transition: none; }
+    }
+    @media (max-width: 360px) {
+      .card { padding: 18px 18px; }
+      .card h1 { font-size: 1.85rem; }
     }
   </style>
 </head>
 <body>
   <main>
-    <header>
-      <div class="sign">
-        <h1>김대현</h1>
-        <span class="roman">Kim Daehyun</span>
+    <div class="stage" id="stage">
+      <div class="card-wrap">
+        <article class="card" id="card" aria-label="김대현 명함">
+          <span class="sweep" aria-hidden="true"></span>
+          <div class="card-top">
+            <div>
+              <h1>김대현</h1>
+              <span class="roman" translate="no">Kim Daehyun</span>
+            </div>
+            <svg class="mark" viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 17h7l3-7 5 15 3-8h10" />
+            </svg>
+          </div>
+          <div></div>
+          <div class="card-bottom">
+            <div class="role">웹과 앱을 만듭니다<span><span translate="no">Newert</span> 인턴, 2026</span></div>
+            <a class="handle" translate="no" href="https://github.com/daehyun2000" target="_blank" rel="noopener noreferrer">@daehyun2000</a>
+          </div>
+        </article>
       </div>
-      <div class="intro">
-        <p>아이디어를 직접 만들어 보는 걸 좋아합니다. 제가 하는 일과 일상을 여기 모아 뒀어요.</p>
-        <p><a class="handle" href="https://github.com/daehyun2000" target="_blank" rel="noopener noreferrer">@daehyun2000</a></p>
-      </div>
-    </header>
+    </div>
 
-    <ul class="route" id="links" aria-label="링크 목록"></ul>
-    <p class="empty" id="empty" hidden>아직 링크가 없습니다. 편집에서 첫 링크를 추가하세요.</p>
+    <p class="intro">인턴으로 참여한 프로젝트와 일상을 여기 모아 뒀어요.</p>
+
+    <ul class="links" id="links" aria-label="링크 목록"></ul>
+    <p class="empty" id="empty" hidden>아직 링크가 없습니다. 링크 편집에서 첫 링크를 추가하세요.</p>
 
     <form id="form" novalidate>
       <strong id="formTitle">링크 추가</strong>
-      <div class="row">
-        <div>
-          <label for="icon">아이콘</label>
-          <input id="icon" maxlength="2" placeholder="선택" />
-        </div>
-        <div>
-          <label for="title">이름</label>
-          <input id="title" placeholder="예: 블로그" />
-        </div>
+      <div>
+        <label for="title">이름</label>
+        <input id="title" name="title" autocomplete="off" placeholder="예: 블로그…" />
       </div>
       <div>
         <label for="desc">설명</label>
-        <input id="desc" placeholder="한 줄 설명 (선택)" />
+        <input id="desc" name="desc" autocomplete="off" placeholder="한 줄 설명 (선택)…" />
       </div>
       <div>
         <label for="url">주소</label>
-        <input id="url" placeholder="https://example.com" inputmode="url" />
+        <input id="url" name="url" type="url" autocomplete="off" spellcheck="false" placeholder="https://example.com…" inputmode="url" />
       </div>
       <p class="error" id="error" role="alert"></p>
       <div style="display:flex;gap:10px">
@@ -183,17 +250,30 @@
   </main>
 
   <script>
-    const KEY = "mylink:v6";
-    const DEFAULT_LINKS = [
-      { id: 1, title: "Instagram", desc: "@ddae.h_", url: "https://www.instagram.com/ddae.h_/", clicks: 0 },
-      { id: 2, title: "GitHub", desc: "코드와 프로젝트", url: "https://github.com/daehyun2000", clicks: 0 },
-      { id: 4, title: "Newert 홈페이지", desc: "인턴으로 참여한 회사 홈페이지 리뉴얼", url: "https://newert.co.kr/", clicks: 0 },
-      { id: 3, title: "MyLink 저장소", desc: "이 페이지의 소스 코드", url: "https://github.com/daehyun2000/mylink", clicks: 0 },
-    ];
+    const ICONS = {
+      instagram: '<rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><path d="M17.4 6.6h.01"/>',
+      github: '<path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/>',
+      globe: '<circle cx="12" cy="12" r="9.5"/><path d="M12 2.5a14 14 0 0 0 0 19 14 14 0 0 0 0-19"/><path d="M2.5 12h19"/>',
+      signal: '<path d="M2 12h4l2.5-6 4.5 13 3-9 1.5 2H22"/>',
+      code: '<path d="m17 16 4-4-4-4"/><path d="m7 8-4 4 4 4"/><path d="m14 4-4 16"/>',
+      link: '<path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1 1"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1-1"/>',
+    };
+    const ARROW = '<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>';
 
-    // 편집 기능은 주소 끝에 ?edit 를 붙였을 때만 나타납니다.
+    const KEY = "mylink:v7";
+    const DEFAULT_LINKS = [
+      { id: 1, icon: "instagram", title: "Instagram", desc: "@ddae.h_", url: "https://www.instagram.com/ddae.h_/", clicks: 0 },
+      { id: 2, icon: "github", title: "GitHub", desc: "코드와 프로젝트", url: "https://github.com/daehyun2000", clicks: 0 },
+      { id: 3, icon: "globe", title: "Newert 홈페이지", desc: "인턴으로 참여한 회사 홈페이지 리뉴얼", url: "https://newert.co.kr/", clicks: 0 },
+      { id: 4, icon: "signal", title: "DataHub", desc: "인턴으로 참여한 생체신호 데이터 플랫폼", url: "https://biosignal-datahub.com/ko", clicks: 0 },
+      { id: 5, icon: "code", title: "MyLink 저장소", desc: "이 페이지의 소스 코드", url: "https://github.com/daehyun2000/mylink", clicks: 0 },
+    ];
+    // 목록 등장 간격: 점점 짧아지게 (균일하지 않게)
+    const DELAYS = [380, 480, 560, 620, 665, 700, 730];
+
     const canEdit = new URLSearchParams(location.search).has("edit");
     if (canEdit) document.body.classList.add("can-edit");
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     function load() {
       if (!canEdit) return structuredClone(DEFAULT_LINKS);
@@ -203,43 +283,44 @@
       } catch (e) {}
       return structuredClone(DEFAULT_LINKS);
     }
-    function save() {
-      try { localStorage.setItem(KEY, JSON.stringify(links)); } catch (e) {}
-    }
+    function save() { try { localStorage.setItem(KEY, JSON.stringify(links)); } catch (e) {} }
 
     let links = load();
     let editingId = null;
-
+    let firstRender = true;
     const $ = (id) => document.getElementById(id);
     const list = $("links");
-    const EXT_ICON = '<svg class="ext" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 4h9v9M16 4 5 15"/></svg>';
 
-    function hostOf(url) { try { return new URL(url).hostname.replace(/^www\./, ""); } catch { return url; } }
+    function icon(name) {
+      return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name] || ICONS.link}</svg>`;
+    }
 
     function render() {
       list.innerHTML = "";
       $("empty").hidden = links.length > 0;
       links.forEach((link, i) => {
         const li = document.createElement("li");
-        li.className = "stop";
+        li.className = "editable";
+        li.style.animationDelay = firstRender ? `${DELAYS[Math.min(i, DELAYS.length - 1)]}ms` : "0ms";
+        if (!firstRender) li.style.animation = "none";
 
         const a = document.createElement("a");
+        a.className = "row";
         a.href = link.url;
         a.target = "_blank";
         a.rel = "noopener noreferrer";
         a.innerHTML =
-          '<span class="dot" aria-hidden="true"></span>' +
-          '<span class="label"><span class="name"></span><span class="desc"></span></span>' +
-          '<span class="count"></span>' + EXT_ICON;
-        a.querySelector(".dot").style.animationDelay = `${0.25 + i * 0.12}s`;
-        a.querySelector(".name").textContent = (link.icon ? link.icon + " " : "") + link.title;
+          `<span class="row-inner"><span class="tile">${icon(link.icon)}</span>` +
+          `<span class="text"><span class="name"></span><span class="desc"></span></span>` +
+          `<span class="count"></span>${ARROW}</span>`;
+        a.querySelector(".name").textContent = link.title;
+        a.querySelector(".name").setAttribute("translate", "no");
         a.querySelector(".desc").textContent = link.desc || hostOf(link.url);
         a.querySelector(".count").textContent = `클릭 ${link.clicks || 0}`;
         a.addEventListener("click", (e) => {
           if (document.body.classList.contains("editing")) { e.preventDefault(); return; }
           if (!canEdit) return;
-          link.clicks = (link.clicks || 0) + 1;
-          save();
+          link.clicks = (link.clicks || 0) + 1; save();
           a.querySelector(".count").textContent = `클릭 ${link.clicks}`;
         });
 
@@ -258,78 +339,80 @@
           }
         };
         tools.append(edit, del);
-
         li.append(a, tools);
         list.append(li);
       });
+      firstRender = false;
     }
 
-    function isValidUrl(value) {
-      try {
-        const u = new URL(value);
-        return u.protocol === "http:" || u.protocol === "https:";
-      } catch { return false; }
-    }
+    function hostOf(url) { try { return new URL(url).hostname.replace(/^www\./, ""); } catch { return url; } }
+    function isValidUrl(v) { try { const u = new URL(v); return u.protocol === "http:" || u.protocol === "https:"; } catch { return false; } }
 
     function resetForm() {
-      editingId = null;
-      $("form").reset();
-      $("error").textContent = "";
-      $("formTitle").textContent = "링크 추가";
-      $("submitBtn").textContent = "추가";
-      $("cancelBtn").hidden = true;
+      editingId = null; $("form").reset(); $("error").textContent = "";
+      $("formTitle").textContent = "링크 추가"; $("submitBtn").textContent = "추가"; $("cancelBtn").hidden = true;
     }
-
     function startEdit(id) {
-      const link = links.find((l) => l.id === id);
-      if (!link) return;
+      const link = links.find((l) => l.id === id); if (!link) return;
       editingId = id;
-      $("icon").value = link.icon || "";
-      $("title").value = link.title;
-      $("desc").value = link.desc || "";
-      $("url").value = link.url;
-      $("formTitle").textContent = "링크 수정";
-      $("submitBtn").textContent = "저장";
-      $("cancelBtn").hidden = false;
+      $("title").value = link.title; $("desc").value = link.desc || ""; $("url").value = link.url;
+      $("formTitle").textContent = "링크 수정"; $("submitBtn").textContent = "저장"; $("cancelBtn").hidden = false;
       $("title").focus();
     }
-
     $("form").addEventListener("submit", (e) => {
       e.preventDefault();
-      const icon = $("icon").value.trim();
       const title = $("title").value.trim();
       const desc = $("desc").value.trim();
       let url = $("url").value.trim();
       if (url && !/^https?:\/\//i.test(url)) url = "https://" + url;
-
       if (!title || !url) { $("error").textContent = "이름과 주소를 모두 입력하세요."; return; }
       if (!isValidUrl(url)) { $("error").textContent = "주소는 https:// 로 시작하는 형식이어야 합니다."; return; }
-
-      if (editingId !== null) {
-        const link = links.find((l) => l.id === editingId);
-        Object.assign(link, { icon, title, desc, url });
-      } else {
-        links.push({ id: Date.now(), icon, title, desc, url, clicks: 0 });
-      }
+      if (editingId !== null) Object.assign(links.find((l) => l.id === editingId), { title, desc, url });
+      else links.push({ id: Date.now(), icon: "link", title, desc, url, clicks: 0 });
       save(); render(); resetForm();
     });
-
     $("cancelBtn").onclick = resetForm;
-
     $("editToggle").onclick = () => {
       const on = document.body.classList.toggle("editing");
       $("editToggle").textContent = on ? "편집 마치기" : "링크 편집";
       if (!on) resetForm();
     };
-
     $("resetBtn").onclick = () => {
-      if (confirm("링크 목록을 기본 링크로 되돌릴까요?")) {
-        links = structuredClone(DEFAULT_LINKS);
-        save(); render(); resetForm();
-      }
+      if (confirm("링크 목록을 기본 링크로 되돌릴까요?")) { links = structuredClone(DEFAULT_LINKS); save(); render(); resetForm(); }
     };
 
     render();
+
+    // 명함 기울이기: 마우스 위치를 목표로 두고 스프링으로 따라감
+    (function tilt() {
+      const fine = matchMedia("(hover: hover) and (pointer: fine)").matches;
+      if (reduce || !fine) return;
+      const stage = $("stage"), card = $("card");
+      let tx = 0, ty = 0, rx = 0, ry = 0, vx = 0, vy = 0, running = false;
+      const STIFF = 0.09, DAMP = 0.78;
+      function frame() {
+        vx = (vx + (tx - rx) * STIFF) * DAMP;
+        vy = (vy + (ty - ry) * STIFF) * DAMP;
+        rx += vx; ry += vy;
+        card.style.transform = `rotateX(${rx.toFixed(3)}deg) rotateY(${ry.toFixed(3)}deg)`;
+        card.style.setProperty("--sheen", `${(-60 + ry * 6).toFixed(2)}%`);
+        if (Math.abs(tx - rx) + Math.abs(ty - ry) + Math.abs(vx) + Math.abs(vy) > 0.01) requestAnimationFrame(frame);
+        else running = false;
+      }
+      function kick() { if (!running) { running = true; requestAnimationFrame(frame); } }
+      let r = null;
+      stage.addEventListener("pointerenter", () => { r = card.getBoundingClientRect(); });
+      addEventListener("scroll", () => { r = null; }, { passive: true });
+      stage.addEventListener("pointermove", (e) => {
+        if (!r) r = card.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        tx = Math.max(-1, Math.min(1, py)) * -9;
+        ty = Math.max(-1, Math.min(1, px)) * 12;
+        kick();
+      });
+      stage.addEventListener("pointerleave", () => { tx = 0; ty = 0; kick(); });
+    })();
   </script>
 </body>
 </html>
