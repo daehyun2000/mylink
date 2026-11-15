@@ -3,76 +3,109 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>마이링크 MyLink</title>
-  <meta name="description" content="나의 링크를 한 페이지에 모아 공유하는 마이링크" />
-  <meta property="og:title" content="마이링크 MyLink" />
-  <meta property="og:description" content="나의 링크를 한 페이지에 모아 공유하는 마이링크" />
+  <title>김대현 | MyLink</title>
+  <meta name="description" content="김대현(@daehyun2000)의 링크 모음 페이지" />
+  <meta property="og:title" content="김대현 | MyLink" />
+  <meta property="og:description" content="김대현(@daehyun2000)의 링크 모음 페이지" />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://daehyun2000.github.io/mylink/" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔗</text></svg>" />
   <style>
     :root {
       --bg: #fff7e8;
+      --bg-dot: #f1dfbd;
       --card: #ffffff;
       --ink: #111111;
       --muted: #5c5c5c;
       --accent: #ffd23f;
       --accent-2: #7bdff2;
+      --accent-3: #ff9fb2;
       --danger: #ff6b6b;
       --shadow: 4px 4px 0 var(--ink);
     }
     @media (prefers-color-scheme: dark) {
       :root:not([data-theme="light"]) {
-        --bg: #16161a; --card: #24242b; --ink: #f4f4f4; --muted: #b0b0b8;
-        --accent: #e0b400; --accent-2: #2f9db3; --danger: #e05555;
+        --bg: #16161a; --bg-dot: #26262e; --card: #24242b; --ink: #f4f4f4; --muted: #b0b0b8;
+        --accent: #e0b400; --accent-2: #2f9db3; --accent-3: #c25b74; --danger: #e05555;
       }
     }
     :root[data-theme="dark"] {
-      --bg: #16161a; --card: #24242b; --ink: #f4f4f4; --muted: #b0b0b8;
-      --accent: #e0b400; --accent-2: #2f9db3; --danger: #e05555;
+      --bg: #16161a; --bg-dot: #26262e; --card: #24242b; --ink: #f4f4f4; --muted: #b0b0b8;
+      --accent: #e0b400; --accent-2: #2f9db3; --accent-3: #c25b74; --danger: #e05555;
     }
     * { box-sizing: border-box; }
     body {
-      margin: 0; min-height: 100vh; background: var(--bg); color: var(--ink);
+      margin: 0; min-height: 100vh; color: var(--ink);
+      background-color: var(--bg);
+      background-image: radial-gradient(var(--bg-dot) 1.5px, transparent 1.5px);
+      background-size: 22px 22px;
       font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
-      display: flex; justify-content: center; padding: 40px 16px 64px;
+      display: flex; justify-content: center; padding: 48px 16px 64px;
     }
     main { width: 100%; max-width: 480px; }
-    .profile { text-align: center; margin-bottom: 28px; }
+
+    .profile { text-align: center; margin-bottom: 32px; animation: rise .5s ease both; }
     .avatar {
-      width: 96px; height: 96px; margin: 0 auto 14px; border-radius: 50%;
+      width: 112px; height: 112px; margin: 0 auto 16px; border-radius: 50%;
       background: var(--accent); border: 3px solid var(--ink); box-shadow: var(--shadow);
-      display: grid; place-items: center; font-size: 44px;
+      display: grid; place-items: center; overflow: hidden;
+      font-size: 2.1rem; font-weight: 900; letter-spacing: -0.04em; color: #111;
     }
-    h1 { margin: 0 0 6px; font-size: 1.5rem; }
-    .bio { margin: 0; color: var(--muted); }
+    h1 { margin: 0; font-size: 1.7rem; letter-spacing: -0.02em; }
+    .handle {
+      display: inline-block; margin: 8px 0 12px; padding: 4px 12px; font-size: .9rem; font-weight: 700;
+      background: var(--accent-2); color: #111; border: 2px solid var(--ink); border-radius: 999px;
+      text-decoration: none;
+    }
+    .bio { margin: 0; color: var(--muted); line-height: 1.6; }
+    .tags { display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; margin-top: 14px; }
+    .tag {
+      font-size: .78rem; font-weight: 700; padding: 3px 10px; border-radius: 999px;
+      border: 2px solid var(--ink); background: var(--card);
+    }
+
     .links { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
     .link {
       display: flex; align-items: center; gap: 8px; background: var(--card);
-      border: 3px solid var(--ink); border-radius: 14px; box-shadow: var(--shadow);
-      transition: transform .1s, box-shadow .1s;
+      border: 3px solid var(--ink); border-radius: 16px; box-shadow: var(--shadow);
+      transition: transform .12s, box-shadow .12s;
+      animation: rise .5s ease both;
     }
     .link:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
     .link a {
-      flex: 1; min-height: 56px; display: flex; align-items: center; gap: 12px;
-      padding: 12px 16px; color: inherit; text-decoration: none; font-weight: 700; min-width: 0;
+      flex: 1; min-height: 64px; display: flex; align-items: center; gap: 14px;
+      padding: 12px 16px; color: inherit; text-decoration: none; min-width: 0;
     }
-    .link .icon { font-size: 1.4rem; }
-    .link .title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .link .count { margin-left: auto; font-size: .78rem; font-weight: 600; color: var(--muted); white-space: nowrap; }
+    .link .icon {
+      flex: none; width: 44px; height: 44px; border-radius: 12px; border: 2px solid var(--ink);
+      display: grid; place-items: center; font-size: 1.3rem; background: var(--accent);
+    }
+    .link:nth-child(3n+2) .icon { background: var(--accent-2); }
+    .link:nth-child(3n+3) .icon { background: var(--accent-3); }
+    .link .text { flex: 1; display: grid; min-width: 0; }
+    .link .title { font-weight: 800; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .link .desc { font-size: .82rem; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .link .count { font-size: .75rem; font-weight: 600; color: var(--muted); white-space: nowrap; }
+    .link .arrow { font-weight: 800; }
+
     .tools { display: none; gap: 6px; padding-right: 10px; }
     body.editing .tools { display: flex; }
+    body:not(.editing) .count { display: none; }
+
     button {
       font: inherit; font-weight: 700; cursor: pointer; color: var(--ink);
       background: var(--card); border: 2px solid var(--ink); border-radius: 10px;
       min-width: 44px; min-height: 44px; padding: 0 12px;
     }
-    button.primary { background: var(--accent); box-shadow: 3px 3px 0 var(--ink); }
-    button.danger { background: var(--danger); }
+    button.primary { background: var(--accent); color: #111; box-shadow: 3px 3px 0 var(--ink); }
+    button.danger { background: var(--danger); color: #111; }
     button:active { transform: translate(1px, 1px); }
-    .bar { display: flex; justify-content: center; gap: 10px; margin-top: 28px; flex-wrap: wrap; }
+    .bar { display: none; justify-content: center; gap: 10px; margin-top: 28px; flex-wrap: wrap; }
+    body.can-edit .bar { display: flex; }
+
     form {
       display: none; margin-top: 18px; padding: 18px; background: var(--card);
-      border: 3px solid var(--ink); border-radius: 14px; box-shadow: var(--shadow); gap: 10px;
+      border: 3px solid var(--ink); border-radius: 16px; box-shadow: var(--shadow); gap: 10px;
     }
     body.editing form { display: grid; }
     label { font-size: .85rem; font-weight: 700; }
@@ -83,19 +116,28 @@
     .row { display: grid; grid-template-columns: 72px 1fr; gap: 10px; }
     .error { color: var(--danger); font-size: .85rem; min-height: 1.2em; margin: 0; }
     .empty { text-align: center; color: var(--muted); }
-    footer { margin-top: 40px; text-align: center; font-size: .8rem; color: var(--muted); }
+    footer { margin-top: 44px; text-align: center; font-size: .8rem; color: var(--muted); }
+
+    @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
   </style>
 </head>
 <body>
   <main>
     <section class="profile">
-      <div class="avatar" aria-hidden="true">🙂</div>
-      <h1 id="name">마이링크</h1>
-      <p class="bio" id="bio">나의 링크를 한 곳에 모았어요</p>
+      <div class="avatar" aria-hidden="true">대현</div>
+      <h1>김대현</h1>
+      <a class="handle" href="https://github.com/daehyun2000" target="_blank" rel="noopener noreferrer">@daehyun2000</a>
+      <p class="bio">아이디어를 코드로, 코드를 서비스로.<br />만들고 배운 것들을 여기에 모아 둡니다.</p>
+      <div class="tags">
+        <span class="tag">🛠️ 바이브 코딩</span>
+        <span class="tag">🌐 Web</span>
+        <span class="tag">🚀 MyLink</span>
+      </div>
     </section>
 
     <ul class="links" id="links"></ul>
-    <p class="empty" id="empty" hidden>아직 링크가 없어요. 편집 모드에서 추가해 보세요.</p>
+    <p class="empty" id="empty" hidden>아직 링크가 없어요.</p>
 
     <form id="form" novalidate>
       <strong id="formTitle">새 링크 추가</strong>
@@ -110,11 +152,15 @@
         </div>
       </div>
       <div>
+        <label for="desc">설명 (선택)</label>
+        <input id="desc" placeholder="한 줄 설명" />
+      </div>
+      <div>
         <label for="url">주소 (URL)</label>
         <input id="url" placeholder="https://example.com" inputmode="url" />
       </div>
       <p class="error" id="error" role="alert"></p>
-      <div class="bar" style="margin-top:0">
+      <div style="display:flex;justify-content:center;gap:10px">
         <button type="submit" class="primary" id="submitBtn">추가</button>
         <button type="button" id="cancelBtn" hidden>취소</button>
       </div>
@@ -125,17 +171,22 @@
       <button type="button" id="resetBtn">기본값으로</button>
     </div>
 
-    <footer>MyLink · 아이디어를 현실로: 바이브 코딩</footer>
+    <footer>© 김대현 · MyLink · 아이디어를 현실로: 바이브 코딩</footer>
   </main>
 
   <script>
-    const KEY = "mylink:v2";
+    const KEY = "mylink:v3";
     const DEFAULT_LINKS = [
-      { id: 1, icon: "🐙", title: "GitHub 프로필", url: "https://github.com/daehyun2000", clicks: 0 },
-      { id: 2, icon: "🔗", title: "마이링크 저장소", url: "https://github.com/daehyun2000/mylink", clicks: 0 },
+      { id: 1, icon: "🐙", title: "GitHub", desc: "코드와 프로젝트 모음", url: "https://github.com/daehyun2000", clicks: 0 },
+      { id: 2, icon: "🔗", title: "MyLink 저장소", desc: "이 페이지의 소스 코드", url: "https://github.com/daehyun2000/mylink", clicks: 0 },
     ];
 
+    // 편집 기능은 주소 끝에 ?edit 를 붙였을 때만 보입니다.
+    const canEdit = new URLSearchParams(location.search).has("edit");
+    if (canEdit) document.body.classList.add("can-edit");
+
     function load() {
+      if (!canEdit) return structuredClone(DEFAULT_LINKS);
       try {
         const saved = JSON.parse(localStorage.getItem(KEY));
         if (Array.isArray(saved)) return saved;
@@ -155,20 +206,26 @@
     function render() {
       list.innerHTML = "";
       $("empty").hidden = links.length > 0;
-      for (const link of links) {
+      links.forEach((link, i) => {
         const li = document.createElement("li");
         li.className = "link";
+        li.style.animationDelay = `${0.1 + i * 0.07}s`;
 
         const a = document.createElement("a");
         a.href = link.url;
         a.target = "_blank";
         a.rel = "noopener noreferrer";
-        a.innerHTML = '<span class="icon"></span><span class="title"></span><span class="count"></span>';
+        a.innerHTML =
+          '<span class="icon"></span>' +
+          '<span class="text"><span class="title"></span><span class="desc"></span></span>' +
+          '<span class="count"></span><span class="arrow">↗</span>';
         a.querySelector(".icon").textContent = link.icon || "🔗";
         a.querySelector(".title").textContent = link.title;
+        a.querySelector(".desc").textContent = link.desc || new URL(link.url).hostname;
         a.querySelector(".count").textContent = `클릭 ${link.clicks || 0}`;
         a.addEventListener("click", (e) => {
           if (document.body.classList.contains("editing")) { e.preventDefault(); return; }
+          if (!canEdit) return;
           link.clicks = (link.clicks || 0) + 1;
           save();
           a.querySelector(".count").textContent = `클릭 ${link.clicks}`;
@@ -192,7 +249,7 @@
 
         li.append(a, tools);
         list.append(li);
-      }
+      });
     }
 
     function isValidUrl(value) {
@@ -217,6 +274,7 @@
       editingId = id;
       $("icon").value = link.icon || "";
       $("title").value = link.title;
+      $("desc").value = link.desc || "";
       $("url").value = link.url;
       $("formTitle").textContent = "링크 수정";
       $("submitBtn").textContent = "저장";
@@ -228,6 +286,7 @@
       e.preventDefault();
       const icon = $("icon").value.trim();
       const title = $("title").value.trim();
+      const desc = $("desc").value.trim();
       let url = $("url").value.trim();
       if (url && !/^https?:\/\//i.test(url)) url = "https://" + url;
 
@@ -236,9 +295,9 @@
 
       if (editingId !== null) {
         const link = links.find((l) => l.id === editingId);
-        Object.assign(link, { icon, title, url });
+        Object.assign(link, { icon, title, desc, url });
       } else {
-        links.push({ id: Date.now(), icon, title, url, clicks: 0 });
+        links.push({ id: Date.now(), icon, title, desc, url, clicks: 0 });
       }
       save(); render(); resetForm();
     });
